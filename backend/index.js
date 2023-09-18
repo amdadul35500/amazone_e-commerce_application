@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://amazone-api.vercel.app",
+    origin: "https://amazone-frontend-steel.vercel.app",
     methods: ["POST", "GET"],
     credentials: true,
   })
