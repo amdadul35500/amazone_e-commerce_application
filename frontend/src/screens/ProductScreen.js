@@ -6,7 +6,7 @@ import Rating from "../components/Rating";
 import { Helmet } from "react-helmet-async";
 import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
-import { getError } from "../utils";
+import { base_url, getError } from "../utils";
 import { Store } from "../Store";
 
 const reducer = (state, action) => {
@@ -34,7 +34,7 @@ const ProductScreen = () => {
   useEffect(() => {
     dispatch({ type: "FETCH_REQUEST" });
     const fetchData = async () => {
-      const result = await axios.get(`/api/products/slug/${slug}`);
+      const result = await axios.get(`${base_url}/api/products/slug/${slug}`);
       dispatch({ type: "FETCH_SUCCESS", payload: result.data });
     };
     fetchData();
@@ -49,7 +49,7 @@ const ProductScreen = () => {
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quntity = existItem ? existItem + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
+    const { data } = await axios.get(`${base_url}/api/products/${product._id}`);
     if (data.countInStock < quntity) {
       window.alert("Sorry product is out of stock!");
       return;

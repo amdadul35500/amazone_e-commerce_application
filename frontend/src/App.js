@@ -28,7 +28,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { getError } from "./utils";
+import { base_url, getError } from "./utils";
 import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
 
@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await axios.get(`${base_url}/api/products/categories`);
         setCategories(data);
       } catch (error) {
         toast(getError(error));

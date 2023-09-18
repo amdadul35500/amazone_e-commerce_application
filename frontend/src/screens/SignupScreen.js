@@ -5,7 +5,7 @@ import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
-import { getError } from "../utils";
+import { base_url, getError } from "../utils";
 
 const SignupScreen = () => {
   const [name, setName] = useState("");
@@ -29,7 +29,7 @@ const SignupScreen = () => {
       return;
     }
     try {
-      const { data } = await axios.post("/api/users/signup", {
+      const { data } = await axios.post(`${base_url}/api/users/signup`, {
         name,
         email,
         password,

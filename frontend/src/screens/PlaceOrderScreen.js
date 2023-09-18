@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { Store } from "../Store";
-import { getError } from "../utils";
+import { base_url, getError } from "../utils";
 import { toast } from "react-toastify";
 import axios from "axios";
 import LoadingBox from "../components/LoadingBox";
@@ -44,7 +44,7 @@ const PlaceOrderScreen = () => {
     try {
       dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(
-        `/api/orders`,
+        `${base_url}/api/orders`,
         {
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,

@@ -5,7 +5,7 @@ import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
-import { getError } from "../utils";
+import { base_url, getError } from "../utils";
 
 const SigninScreen = () => {
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ const SigninScreen = () => {
   const submitHandle = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/users/signin", {
+      const { data } = await axios.post(`${base_url}/api/users/signin`, {
         email,
         password,
       });

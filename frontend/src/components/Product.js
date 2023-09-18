@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import Rating from "./Rating";
 import axios from "axios";
 import { Store } from "../Store";
+import { base_url } from "../utils";
 
 const Product = ({ product }) => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -14,7 +15,7 @@ const Product = ({ product }) => {
   const addToCartHandler = async (item) => {
     const existItem = cartItems.find((x) => x._id === product._id);
     const quntity = existItem ? existItem + 1 : 1;
-    const { data } = await axios.get(`/api/products/${item._id}`);
+    const { data } = await axios.get(`${base_url}/api/products/${item._id}`);
     if (data.countInStock < quntity) {
       window.alert("Sorry product is out of stock!");
       return;

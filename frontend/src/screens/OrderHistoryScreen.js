@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { Store } from "../Store";
-import { getError } from "../utils";
+import { base_url, getError } from "../utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -35,7 +35,7 @@ const OrderHistoryScreen = () => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const { data } = await axios.get(`/api/orders/mine`, {
+        const { data } = await axios.get(`${base_url}/api/orders/mine`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: "FETCH_SUCCESS", payload: data });

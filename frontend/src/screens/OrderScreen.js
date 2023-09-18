@@ -3,7 +3,7 @@ import LoadingBox from "../components/LoadingBox.js";
 import MessageBox from "../components/MessageBox.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { Store } from "../Store.js";
-import { getError } from "../utils.js";
+import { base_url, getError } from "../utils.js";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
@@ -58,7 +58,7 @@ const OrderScreen = () => {
       console.log("2");
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/orders/${orderId}`, {
+        const { data } = await axios.get(`${base_url}/api/orders/${orderId}`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         console.log("Success");
@@ -85,7 +85,7 @@ const OrderScreen = () => {
     const fetch = async () => {
       console.log("4");
       try {
-        const { data } = await axios.get(`/api/orders/${orderId}`, {
+        const { data } = await axios.get(`${base_url}/api/orders/${orderId}`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: "FETCH_SUCCESS", payload: data });
@@ -99,7 +99,7 @@ const OrderScreen = () => {
   const payNow = async (token) => {
     try {
       const { data } = await axios.put(
-        `/api/orders/${order._id}/pay`,
+        `${base_url}/api/orders/${order._id}/pay`,
         { totalAmount: order.totalPrice.toFixed(2), token },
         {
           headers: { authorization: `Bearer ${userInfo.token}` },

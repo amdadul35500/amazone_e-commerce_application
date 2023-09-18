@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getError } from "../utils.js";
+import { base_url, getError } from "../utils.js";
 import { Row, Col, Button } from "react-bootstrap";
 import Rating from "../components/Rating";
 import LoadingBox from "../components/LoadingBox.js";
@@ -86,7 +86,7 @@ const SearchScreen = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
+          `${base_url}/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
         );
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (error) {
@@ -101,7 +101,7 @@ const SearchScreen = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await axios.get(`${base_url}/api/products/categories`);
         setCategories(data);
       } catch (error) {
         toast.error(getError(error));
