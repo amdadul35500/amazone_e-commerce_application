@@ -13,13 +13,7 @@ const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: "https://amazone-frontend-steel.vercel.app",
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 // database connection
 mongoose
