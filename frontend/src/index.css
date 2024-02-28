@@ -126,5 +126,5 @@ button.thumbnail {
   padding: 0;
 }
 .navbar-collapse{
-  margin-top: 15px;
+  margin-top: 15px !important;
 }
